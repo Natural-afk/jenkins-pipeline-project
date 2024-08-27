@@ -16,10 +16,12 @@ pipeline {
             }
             post {
                 always {
-                    mail to: 'Cold2thev@gmail.com',
-                         subject: "Pipeline Test Stage Execution: ${currentBuild.fullDisplayName}",
-                         body: "Status of the Test Stage: ${currentBuild.currentResult}\n\nPlease check the attached log for details.",
-                         attachLog: true
+                    emailext(
+                        to: 'Cold2thev@gmail.com',
+                        subject: "Pipeline Test Stage Execution: ${currentBuild.fullDisplayName}",
+                        body: "Status of the Test Stage: ${currentBuild.currentResult}\n\nPlease check the attached log for details.",
+                        attachLog: true
+                    )
                 }
             }
         }
@@ -38,10 +40,12 @@ pipeline {
             }
             post {
                 always {
-                    mail to: 'Cold2thev@gmail.com',
-                         subject: "Pipeline Security Scan Stage Execution: ${currentBuild.fullDisplayName}",
-                         body: "Status of the Security Scan Stage: ${currentBuild.currentResult}\n\nPlease check the attached log for details.",
-                         attachLog: true
+                    emailext(
+                        to: 'Cold2thev@gmail.com',
+                        subject: "Pipeline Security Scan Stage Execution: ${currentBuild.fullDisplayName}",
+                        body: "Status of the Security Scan Stage: ${currentBuild.currentResult}\n\nPlease check the attached log for details.",
+                        attachLog: true
+                    )
                 }
             }
         }
@@ -71,10 +75,12 @@ pipeline {
     post {
         always {
             echo 'Pipeline completed.'
-            mail to: 'Cold2thev@gmail.com',
-                 subject: "Pipeline Execution: ${currentBuild.fullDisplayName}",
-                 body: "Final Status: ${currentBuild.currentResult}\n\nPlease check the attached log for details.",
-                 attachLog: true
+            emailext(
+                to: 'Cold2thev@gmail.com',
+                subject: "Pipeline Execution: ${currentBuild.fullDisplayName}",
+                body: "Final Status: ${currentBuild.currentResult}\n\nPlease check the attached log for details.",
+                attachLog: true
+            )
         }
     }
 }
